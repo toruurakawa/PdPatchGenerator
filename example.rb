@@ -3,8 +3,7 @@ require 'PdPatchGenerator'
 patch = PdPatch.new(1050, 200, "test")
 
 for i in 0...5
-
-	obj0 = PdObject.new(50+200*i, 50, "osc~")
+    obj0 = PdObject.new(50+200*i, 50, "osc~")
 	obj1 = PdObject.new(100+200*i, 100, "dac~")
 
 	connection0 = PdConnection.new(obj0, 0, obj1, 0)
