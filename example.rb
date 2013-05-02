@@ -33,7 +33,7 @@ for i in 0...5
 	toggle = PdToggle.new(200+200*i,80)
 	patch.add_object(toggle)
     
-    array = PdArray.new(50+200*i, 150)
+    array = PdArray.new(50+200*i, 150, "array" + i.to_s())
     patch.add_object(array)
 
 end
