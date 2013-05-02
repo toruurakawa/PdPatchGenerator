@@ -15,8 +15,15 @@ num0 = PdNum.new(50, 10)
 canvas.add_object(num0)
 connection2 = PdConnection.new(num0, 0, obj0, 0)
 
+message0 = PdMessage.new(100,30)
+canvas.add_object(message0)
+connection3 = PdConnection.new(message0, 0, obj0, 1)
 
 canvas.add_connection(connection0)
 canvas.add_connection(connection1)
 canvas.add_connection(connection2)
+canvas.add_connection(connection3)
+
+canvas.add_object(message0)
+
 canvas.save()

@@ -45,6 +45,9 @@ class PdPatchCanvas
 			if obj.class == PdNum
 				@raw += "#X floatatom " + obj.x.to_s() + " " + obj.y.to_s() + " 5 0 0 0 - - -;\n" 
 			end
+			if obj.class == PdMessage
+				@raw += "#X msg " + obj.x.to_s() + " " + obj.y.to_s() + " " + obj.message + ";\n" 
+			end
 		end
 
 		for c in connections
@@ -87,6 +90,18 @@ class PdNum < PdObject
 		@x 		= x
 		@y 		= y
 		@name	= "floatatom"
+		@id 	= @@num
+		@@num 	= @@num + 1
+	end
+end
+
+class PdMessage < PdObject
+	attr_reader :message
+	def initialize(x = 0, y = 0, message = "message")
+		@x 		= x
+		@y 		= y
+		@message = message
+		@name	= "msg"
 		@id 	= @@num
 		@@num 	= @@num + 1
 	end
