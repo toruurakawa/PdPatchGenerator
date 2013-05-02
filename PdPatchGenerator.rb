@@ -146,5 +146,4 @@ class PdConnection
 		@outletNum	= outletNum
 		@inletNum	= inletNum
 	end	
-
 end
