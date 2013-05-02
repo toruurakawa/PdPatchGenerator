@@ -1,4 +1,4 @@
-class PdPatchCanvas
+class PdPatch
 	attr_reader :objects
 	attr_reader :arrays
 	attr_reader :connections
