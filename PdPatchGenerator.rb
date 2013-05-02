@@ -15,11 +15,11 @@ class PdPatch
 	end
 
 	def add_object(obj)
-		objects.push(obj)
-	end
-
-	def add_array(array)
-		arrays.push(array)
+		if(obj.class == PdArray)
+			arrays.push(obj)
+		else 
+			objects.push(obj)
+		end
 	end
 
 	def add_connection(connection)
@@ -53,6 +53,20 @@ class PdPatch
 			end
 			if obj.class == PdToggle
 				@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " tgl 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1;\n" 
+			end
+		end
+
+		for array in arrays
+			if array.class == PdArray
+				@raw += "#N canvas 0 22 450 278 (subpatch) 0;\n"
+				@raw += "#X array " + array.name + " " + array.size.to_s() + " float 3;\n"
+				@raw += "#A"
+				array.size.times{
+					@raw += " " + 0.to_s()
+				}
+				@raw += " 0;\n"
+				@raw += "#X coords 0 1 " + array.size.to_s() + " -1 200 140 1 0 0;\n"
+				@raw += "#X restore " + array.x.to_s() + " " + array.y.to_s() + " graph;\n"
 			end
 		end
 
@@ -129,6 +143,18 @@ class PdToggle < PdObject
 		@x 		= x
 		@y 		= y
 		@name	= "tgl"
+		@id 	= @@num
+		@@num 	= @@num + 1
+	end
+end
+
+class PdArray < PdObject
+	attr_reader :size
+	def initialize(x = 0, y = 0, name = "array1", size = 100)
+		@x 		= x
+		@y 		= y
+		@name	= name
+		@size 	= size
 		@id 	= @@num
 		@@num 	= @@num + 1
 	end
