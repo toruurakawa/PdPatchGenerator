@@ -26,4 +26,8 @@ canvas.add_connection(connection3)
 
 canvas.add_object(message0)
 
+bang = PdBang.new(200, 50)
+canvas.add_object(bang)
+canvas.add_connection(PdConnection.new(bang, 0, obj1, 0))
+
 canvas.save()

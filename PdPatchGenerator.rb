@@ -48,6 +48,9 @@ class PdPatchCanvas
 			if obj.class == PdMessage
 				@raw += "#X msg " + obj.x.to_s() + " " + obj.y.to_s() + " " + obj.message + ";\n" 
 			end
+			if obj.class == PdBang
+				@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " bng 15 250 0 empty empty empty 17 7 0 10 -262144 -1 -1;\n" 
+			end
 		end
 
 		for c in connections
@@ -107,7 +110,15 @@ class PdMessage < PdObject
 	end
 end
 
-
+class PdBang < PdObject
+	def initialize(x = 0, y = 0)
+		@x 		= x
+		@y 		= y
+		@name	= "bng"
+		@id 	= @@num
+		@@num 	= @@num + 1
+	end
+end
 
 class PdConnection
 	attr_reader :objOut
