@@ -61,7 +61,7 @@ class PdPatchCanvas
 
 end
 
-class PDObject
+class PdObject
 	@@num = 0
 	attr_reader :x
 	attr_reader :y
@@ -78,7 +78,7 @@ class PDObject
 
 end
 
-class PDConnection
+class PdConnection
 	attr_reader :objOut
 	attr_reader :objIn
 	attr_reader :outletNum
@@ -97,11 +97,11 @@ end
 
 canvas = PdPatchCanvas.new(300, 300, "test")
 
-obj0 = PDObject.new(50, 50, "osc~")
-obj1 = PDObject.new(100, 100, "dac~")
+obj0 = PdObject.new(50, 50, "osc~")
+obj1 = PdObject.new(100, 100, "dac~")
 
-connection0 = PDConnection.new(obj0, 0, obj1, 0)
-connection1 = PDConnection.new(obj0, 0, obj1, 1)
+connection0 = PdConnection.new(obj0, 0, obj1, 0)
+connection1 = PdConnection.new(obj0, 0, obj1, 1)
 
 canvas.add_object(obj0)
 canvas.add_object(obj1)
