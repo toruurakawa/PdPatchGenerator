@@ -30,4 +30,7 @@ bang = PdBang.new(200, 50)
 canvas.add_object(bang)
 canvas.add_connection(PdConnection.new(bang, 0, obj1, 0))
 
+toggle = PdToggle.new(200,80)
+canvas.add_object(toggle)
+
 canvas.save()

@@ -51,6 +51,9 @@ class PdPatchCanvas
 			if obj.class == PdBang
 				@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " bng 15 250 0 empty empty empty 17 7 0 10 -262144 -1 -1;\n" 
 			end
+			if obj.class == PdToggle
+				@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " tgl 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1;\n" 
+			end
 		end
 
 		for c in connections
@@ -115,6 +118,16 @@ class PdBang < PdObject
 		@x 		= x
 		@y 		= y
 		@name	= "bng"
+		@id 	= @@num
+		@@num 	= @@num + 1
+	end
+end
+
+class PdToggle < PdObject
+	def initialize(x = 0, y = 0)
+		@x 		= x
+		@y 		= y
+		@name	= "tgl"
 		@id 	= @@num
 		@@num 	= @@num + 1
 	end
