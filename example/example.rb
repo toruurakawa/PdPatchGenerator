@@ -1,5 +1,5 @@
-require 'PdPatchGenerator'
-	
+require File.expand_path(File.dirname(__FILE__) + '/../src/PdPatchGenerator.rb')
+
 patch = PdPatch.new(1100, 350, "test")
 
 for i in 0...5
