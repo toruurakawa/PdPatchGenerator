@@ -14,17 +14,6 @@ class PdPatchCanvas
 		@name = filename
 	end
 
-	def clear()
-		@raw = "#N canvas 100 100 " + @width.to_s() + " " + @height.to_s() + " 10;\n"
-	end
-
-	def save()
-		self.conbine()
-		io = File.open(@name+".pd", "w")
-		io.print(@raw)
-		io.close()
-	end
-
 	def add_object(obj)
 		objects.push(obj)
 	end
@@ -37,7 +26,18 @@ class PdPatchCanvas
 		connections.push(connection)
 	end
 
-	def conbine()
+	def save()
+		combine()
+		io = File.open(@name+".pd", "w")
+		io.print(@raw)
+		io.close()
+	end
+
+	def clear()
+		@raw = "#N canvas 100 100 " + @width.to_s() + " " + @height.to_s() + " 10;\n"
+	end
+
+	def combine()
 		for obj in objects
 			if obj.class == PdObject
 				@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " " + obj.name + ";\n"   
@@ -72,6 +72,7 @@ class PdPatchCanvas
 			@raw += "#X connect " + out_i.to_s() + " " + c.outletNum.to_s() + " " + in_i.to_s() + " " + c.inletNum.to_s() + ";\n"   
 		end
 	end
+	private :combine
 
 end
 
