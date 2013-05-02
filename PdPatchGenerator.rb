@@ -39,7 +39,12 @@ class PdPatchCanvas
 
 	def conbine()
 		for obj in objects
-			@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " " + obj.name + ";\n"   
+			if obj.class == PdObject
+				@raw += "#X obj " + obj.x.to_s() + " " + obj.y.to_s() + " " + obj.name + ";\n"   
+			end
+			if obj.class == PdNum
+				@raw += "#X floatatom " + obj.x.to_s() + " " + obj.y.to_s() + " 5 0 0 0 - - -;\n" 
+			end
 		end
 
 		for c in connections
@@ -75,8 +80,19 @@ class PdObject
 		@id 	= @@num
 		@@num 	= @@num + 1
 	end
-
 end
+
+class PdNum < PdObject
+	def initialize(x = 0, y = 0)
+		@x 		= x
+		@y 		= y
+		@name	= "floatatom"
+		@id 	= @@num
+		@@num 	= @@num + 1
+	end
+end
+
+
 
 class PdConnection
 	attr_reader :objOut

@@ -10,6 +10,13 @@ connection1 = PdConnection.new(obj0, 0, obj1, 1)
 
 canvas.add_object(obj0)
 canvas.add_object(obj1)
+
+num0 = PdNum.new(50, 10)
+canvas.add_object(num0)
+connection2 = PdConnection.new(num0, 0, obj0, 0)
+
+
 canvas.add_connection(connection0)
 canvas.add_connection(connection1)
+canvas.add_connection(connection2)
 canvas.save()
